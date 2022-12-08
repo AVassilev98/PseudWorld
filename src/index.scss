@@ -1,0 +1,13 @@
+@font-face {
+  font-family: baseFont;
+  src: url(GoldbillXlLight.otf);
+}
+
+html,
+body,
+#root,
+div {
+  height: 100%;
+  width: 100%;
+  font-family: baseFont;
+}
