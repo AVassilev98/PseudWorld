@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+
+}
+
+.headerGroup {
+    display: flex;
+    justify-content: space-between;
+    justify-self: center;
+}
+
+.headerColumn {
+    float: left;
+    display: table;
+    width: fit-content;
+    padding: 5%;
+    white-space: nowrap;
+}
+
+.headerColumnLeft {
+    width: inherit;
+}
+
+.headerColumnRight {
+    width: inherit;
+}

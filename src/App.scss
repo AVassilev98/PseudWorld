@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Terminus';
+  src: url('../assets/TerminusTTF.woff2') format('woff2'),
+}
+
+body {
+  font-family: Terminus;
+  color: slategrey;
+  background-color: #0f0f0f;
+}
