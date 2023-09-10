@@ -1,0 +1,12 @@
+.postCell {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    margin: 20px;
+    padding: 20px
+}
+
+.postCell:hover {
+    border-style: dotted;
+    border-color: green;
+}

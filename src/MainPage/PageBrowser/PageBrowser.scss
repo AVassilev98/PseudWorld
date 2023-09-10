@@ -1,0 +1,34 @@
+.pageSelectorContainer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: red;
+    margin-top: 20px;
+}
+
+.pageSelectionElement {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.pageSelectorText {
+    resize: none;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    width: 20px;
+}
+
+.pageSelectorText::placeholder {
+    color: red;
+}
+
+@keyframes blinkingBackground {
+    50% {
+        background-color: red;
+    }
+}
+
+.pageSelectorText:invalid {
+    animation: blinkingBackground 2s infinite
+}

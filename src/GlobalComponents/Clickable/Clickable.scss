@@ -1,0 +1,10 @@
+.clickable {
+    cursor: "pointer";
+    color: red;
+    user-select: none;
+}
+
+.clickable:hover {
+    cursor: "pointer";
+    color: green;
+}

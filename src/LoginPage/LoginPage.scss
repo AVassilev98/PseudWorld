@@ -1,0 +1,42 @@
+.loginContainerOuter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.loginContainerInner {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 20px;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-content: center;
+
+    width: 300px;
+    height: fit-content;
+    border-style: dotted;
+    font-size: large;
+
+}
+
+.loginText {
+    justify-self: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.loginButtonContainer {
+    display: flex;
+}
+
+.loginButton {
+    width: auto;
+    justify-self: center;
+    margin: auto;
+}

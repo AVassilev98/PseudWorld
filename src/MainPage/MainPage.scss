@@ -1,8 +1,17 @@
+.mainColumn {
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    width: 800px;
+    max-width: 100%;
+    margin: auto;
+}
+
 .header {
     display: flex;
     justify-content: center;
     justify-self: center;
-
 }
 
 .headerGroup {

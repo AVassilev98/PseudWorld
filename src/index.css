@@ -5,6 +5,45 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0f0f0f;
+  color: slategray;
+}
+
+textarea {
+  background-color: #0f0f0f;
+  resize: none;
+  color: slategray;
+}
+
+input {
+  background-color: #0f0f0f;
+  resize: none;
+  color: slategray;
+}
+
+:hover {
+  border-color: green;
+}
+
+:focus {
+  border-color: green;
+}
+
+.clickable {
+  cursor: pointer;
+  color: red;
+  user-select: none;
+}
+
+@keyframes linkHoverAnimation {
+  50% {
+    color: green;
+  }
+}
+
+.clickable:hover {
+  cursor: "pointer";
+  animation: linkHoverAnimation 2s infinite
 }
 
 code {

@@ -1,0 +1,34 @@
+.submissionContainer {
+    border-style: solid;
+    border-width: 2px;
+    width: auto;
+    margin: 30px;
+    padding: 10px;
+}
+
+.submissionContainer:hover {
+    border-style: dotted;
+    border-color: green;
+}
+
+.submissionContainer:focus {
+    border-style: dotted;
+    border-color: green;
+}
+
+text-area:focus-visible {
+    border: none;
+}
+
+.formText {
+    width: 100%;
+    height: 300px;
+    resize: vertical;
+    color: slategray;
+}
+
+.titleText {
+    width: 100%;
+    resize: none;
+    color: slategray;
+}
