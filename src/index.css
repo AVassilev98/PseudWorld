@@ -46,7 +46,23 @@ input {
   animation: linkHoverAnimation 2s infinite
 }
 
+.adjustableLogo {
+  font-size: min(1.8vw, 14px);
+}
+
+.adjustableText {
+  font-size: min(2.8vw, 14px);
+}
+
+.adjustableHeaderText {
+  font-size: min(4vw, 20px);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.optionalText {
+  text-overflow: hidden;
 }

@@ -24,9 +24,9 @@ const Header = (props: any) => {
 
     return (
         <div className="header">
-            <span className="headerGroup">
+            <span className="headerGroup adjustableText">
                 <div className="headerColumn headerColumnLeft">
-                    <pre style={{ color: "green" }}>
+                    <pre className="adjustableLogo" style={{ color: "green" }}>
                         {logo}
                     </pre>
                 </div>
@@ -122,6 +122,7 @@ class MainPage extends React.Component<{}, MainPageState> {
                     <div style={{
                         borderStyle: "solid none",
                         borderWidth: "2px",
+                        margin: "10px",
                     }}>
                         <TagDropDown
                             isOpened={this.state.tagDropDownOpened}
@@ -136,9 +137,9 @@ class MainPage extends React.Component<{}, MainPageState> {
                             <SubmissionForm />
                         </DropDown>
                     </div>
-                    <PageBrowser></PageBrowser>
+                    <PageBrowser />
                     {this.renderPostItems()}
-                    <PageBrowser></PageBrowser>
+                    <PageBrowser />
                 </span>
             </div>
         )

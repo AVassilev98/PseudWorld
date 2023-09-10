@@ -66,18 +66,33 @@ class Post extends React.Component<PostData, PostState> {
     render() {
         return (
             <div className="postCell">
-                <h2> On {this.state.date}, <span className="clickable">{this.state.user}</span> posted:</h2>
-                <h2> {this.state.title} </h2>
+                <a className="optionalText adjustableHeaderText"> On {this.state.date},
+                    <span className="clickable">{this.state.user}</span> posted:
+                </a>
+                <a className="postTitle adjustableHeaderText"> {this.state.title} </a>
                 <DropDown isOpened={false} text={"[ Read More ]"}>
                     <p> {this.state.text} </p>
                     <div>
                         {this.state.embeds.map(this.getEmbeddedComponent)}
                     </div>
                 </DropDown>
-
                 <DropDown isOpened={false} text={"[ Tags ]"}>
                     <p> {this.state.tags} </p>
                 </DropDown>
+                <div style={{ display: "flex" }}>
+                    <div className="footerItem" style={{ width: "80%" }}>
+                        <a className="optionalText dateItem adjustableText">
+                            Posted by
+                            <span className="clickable"> {this.state.user}</span>, on {this.state.date}
+                        </a>
+                    </div>
+                    <div className="footerItem clickable idItem" style={{ width: "20%" }}>
+                        <a className="adjustableText" style={{ textAlign: "right", justifySelf: "right" }}>
+                            [ {this.state.id} ]
+                        </a>
+                    </div>
+
+                </div>
             </div>
         )
     }

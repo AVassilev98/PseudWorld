@@ -1,4 +1,5 @@
 import React, { Children } from "react";
+import "./DropDown.scss"
 
 type DropDownProps = {
     isOpened: boolean;
@@ -31,10 +32,10 @@ class DropDown extends React.Component<DropDownProps, DropDownState>
 
     render() {
         return (
-            <div>
-                <p>
+            <div className="dropDownContainer">
+                <a className="adjustableHeaderText">
                     <span onClick={() => this.handleClick()} className="clickable"> {this.state.isOpened ? "▼ " : "▶ "} {this.props.text}</span>
-                </p>
+                </a>
                 {this.state.isOpened ? this.props.children : <div />}
             </div>
         )

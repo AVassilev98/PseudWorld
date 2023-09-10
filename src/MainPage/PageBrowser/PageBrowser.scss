@@ -4,11 +4,12 @@
     align-content: center;
     color: red;
     margin-top: 20px;
+    width: 100%;
 }
 
 .pageSelectionElement {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: min(1vw, 20px);
+    padding-right: min(1vw, 20px);
 }
 
 .pageSelectorText {

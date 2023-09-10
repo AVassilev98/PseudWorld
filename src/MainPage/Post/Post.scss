@@ -10,3 +10,26 @@
     border-style: dotted;
     border-color: green;
 }
+
+.postTitle {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.footerItem {
+    display: flex;
+    margin: auto;
+    align-content: left;
+    float: left;
+    text-align: left;
+    width: 100%;
+}
+
+.dateItem {
+    text-align: left;
+    width: 100%;
+}
+
+.idItem {
+    justify-content: right;
+}
