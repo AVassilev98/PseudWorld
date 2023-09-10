@@ -66,9 +66,6 @@ class Post extends React.Component<PostData, PostState> {
     render() {
         return (
             <div className="postCell">
-                <a className="optionalText adjustableHeaderText"> On {this.state.date},
-                    <span className="clickable">{this.state.user}</span> posted:
-                </a>
                 <a className="postTitle adjustableHeaderText"> {this.state.title} </a>
                 <DropDown isOpened={false} text={"[ Read More ]"}>
                     <p> {this.state.text} </p>
