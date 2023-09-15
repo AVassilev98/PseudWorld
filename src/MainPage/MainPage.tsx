@@ -7,8 +7,10 @@ import TagDropDown from "./TagDropDown/TagDropDown";
 import type { PostData } from "./Post/Post";
 import { text } from "body-parser";
 import DropDown from "../GlobalComponents/DropDown/DropDown";
+import { Auth } from "aws-amplify";
+import { CognitoUser } from "@aws-amplify/auth";
 
-const Header = (props: any) => {
+function Header(props: any) {
     var logo = String.raw`
     ▀▀•          ▪▀▀▀         .▀▀
     ▪▪▪.        ▄██▄▄▀▪▪▪▀▪. ▌███. ▀▄▄▀▪ •▄█▌
@@ -36,7 +38,7 @@ const Header = (props: any) => {
                         verticalAlign: "middle",
                         lineHeight: "normal",
                     }}>
-                        <p>Welcome, <span className="clickable">Jupajupe</span></p>
+                        <p>Welcome, <span className="clickable">{props.username}</span></p>
                         <p><span className="clickable">1</span> Unread Post(s)</p>
                         <p>2 Total Post(s)</p>
                     </span>
@@ -51,15 +53,18 @@ type MainPageState = {
     submissionDropDownOpened: boolean
 }
 
-class MainPage extends React.Component<{}, MainPageState> {
-    constructor(props: MainPageState) {
+type MainPageProps = {
+    user: CognitoUser | null
+}
+
+class MainPage extends React.Component<MainPageProps, MainPageState> {
+    constructor(props: MainPageProps) {
         super(props);
         this.state = {
             tagDropDownOpened: false,
             submissionDropDownOpened: false,
         };
     }
-
 
     postDatas: Array<PostData> = [
         {
@@ -114,11 +119,10 @@ class MainPage extends React.Component<{}, MainPageState> {
             posts.push(<Post {...this.postDatas[i]}></Post>);
         }
 
-
         return (
             <div className="mainColumn">
                 <span style={{ flexDirection: "column" }}>
-                    <Header />
+                    <Header username={this.props.user?.getUsername()} />
                     <div style={{
                         borderStyle: "solid none",
                         borderWidth: "2px",
