@@ -1,5 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
-import { Auth } from 'aws-amplify'
+import { Navigate } from "react-router-dom";
 import React from "react";
 
 type PrivateRouteProps = {
