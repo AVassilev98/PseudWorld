@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './MainPage.scss';
 import Post from "./Post/Post";
 import SubmissionForm from "./SubmissionForm/SubmissionForm";
@@ -9,8 +9,9 @@ import { text } from "body-parser";
 import DropDown from "../GlobalComponents/DropDown/DropDown";
 import { Auth } from "aws-amplify";
 import { CognitoUser } from "@aws-amplify/auth";
+import { Navigate } from "react-router-dom";
 
-function Header(props: any) {
+function Header(username: string, signOutHandler: Function) {
     var logo = String.raw`
     ▀▀•          ▪▀▀▀         .▀▀
     ▪▪▪.        ▄██▄▄▀▪▪▪▀▪. ▌███. ▀▄▄▀▪ •▄█▌
@@ -23,6 +24,9 @@ function Header(props: any) {
     .▀▄█▄▌▄██▄  ▪███.          ▀▀▀▪.  ▀███▀
     ▪▄▄█▄▀.  ▪▪▪▪                  ▪▄▄▄•
 `;
+    function HandleMouseClick() {
+        signOutHandler();
+    }
 
     return (
         <div className="header">
@@ -38,7 +42,7 @@ function Header(props: any) {
                         verticalAlign: "middle",
                         lineHeight: "normal",
                     }}>
-                        <p>Welcome, <span className="clickable">{props.username}</span></p>
+                        <p>Welcome, <span className="clickable" onClick={HandleMouseClick}>{username}</span></p>
                         <p><span className="clickable">1</span> Unread Post(s)</p>
                         <p>2 Total Post(s)</p>
                     </span>
@@ -55,6 +59,7 @@ type MainPageState = {
 
 type MainPageProps = {
     user: CognitoUser | null
+    onSignOut: Function
 }
 
 class MainPage extends React.Component<MainPageProps, MainPageState> {
@@ -119,10 +124,14 @@ class MainPage extends React.Component<MainPageProps, MainPageState> {
             posts.push(<Post {...this.postDatas[i]}></Post>);
         }
 
+        if (this.props.user == undefined) {
+            return <Navigate to={"/"}></Navigate>
+        }
+
         return (
             <div className="mainColumn">
                 <span style={{ flexDirection: "column" }}>
-                    <Header username={this.props.user?.getUsername()} />
+                    {Header(this.props.user?.getUsername(), this.props.onSignOut)}
                     <div style={{
                         borderStyle: "solid none",
                         borderWidth: "2px",
