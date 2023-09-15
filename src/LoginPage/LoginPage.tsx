@@ -47,11 +47,12 @@ type LoginPageState = {
     password: string
     secretKey: string
     errorMessage: string
-    signedIn: boolean
+    signedIn: boolean,
 }
 
 type LoginPageProps = {
     onUserSigninSuccess: Function,
+    signedIn: boolean,
 }
 
 type SignUpParameters = {
@@ -97,7 +98,7 @@ export async function SendSigninRequest({ username, password }: SignInParameters
     }
 }
 
-class LoginPage extends React.Component<LoginPageProps, LoginPageState> {
+class LoginPage extends React.Component<any, LoginPageState> {
     constructor(props: LoginPageProps) {
         super(props);
         this.state = {
@@ -120,9 +121,8 @@ class LoginPage extends React.Component<LoginPageProps, LoginPageState> {
 
         SendSignupRequest({ username: this.state.username, password: this.state.password, secretKey: this.state.secretKey })
             .then(
-                () => {
-                    this.props.onUserSigninSuccess(true);
-                    this.setState({ signedIn: true })
+                (user) => {
+                    this.props.onUserSigninSuccess(user);
                 },
                 (err) => {
                     this.setState({ errorMessage: err.message });
@@ -133,9 +133,8 @@ class LoginPage extends React.Component<LoginPageProps, LoginPageState> {
     clickSigninButton() {
         SendSigninRequest({ username: this.state.username, password: this.state.password })
             .then(
-                () => {
-                    this.props.onUserSigninSuccess(true);
-                    this.setState({ signedIn: true })
+                (user) => {
+                    this.props.onUserSigninSuccess(user);
                 },
                 (err) => {
                     this.setState({ errorMessage: err.message });
@@ -186,7 +185,7 @@ class LoginPage extends React.Component<LoginPageProps, LoginPageState> {
                             </div>
                             {errorMessageBlock}
                         </div>
-                        {this.state.signedIn && <Navigate to={'/'}></Navigate>}
+                        {this.props.signedIn && <Navigate to={'/'}></Navigate>}
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Navigate, Route, Router, RouterProvider, Routes, createBrowserRouter, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Router, RouterProvider, Routes, createBrowserRouter, useNavigate, useNavigation } from 'react-router-dom';
 import './App.scss';
 import MainPage from './MainPage/MainPage';
 import LoginPage from './LoginPage/LoginPage';
@@ -12,53 +12,69 @@ function App() {
 
   const [userDataGathered, setUserDataGathered] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
-  const [user, setUser] = useState(null);
+  const [signOutRequested, setSignOutRequested] = useState(false);
+  const [user, setUser] = useState<CognitoUser | null>();
 
-  async function getUserSession(): Promise<boolean> {
-    let isSignedIn: boolean = false;
-
-    Auth.currentAuthenticatedUser()
-      .then(
-        (userData) => {
-          console.log("Logged in!");
-          setUser(userData);
-          isSignedIn = true;
-        },
-        (err) => {
-          console.log("Could not get user data ", err.message)
-          isSignedIn = false;
-        }
-      );
-    return isSignedIn;
+  function onSignIn(user: CognitoUser) {
+    setSignedIn(true);
+    setUser(user);
   }
+
+  function onSignOut() {
+    setSignOutRequested(true);
+  };
 
   useEffect(() => {
     (async function () {
-      if (!signedIn) {
+      if (user == undefined) {
         try {
           const user = await Auth.currentAuthenticatedUser();
           setUser(user);
-          console.log(user);
           setSignedIn(true);
         }
         catch (error) {
+          setUser(null);
           console.log("Login Failed... Redirecting");
           setSignedIn(false);
         }
+        finally {
+          setUserDataGathered(true);
+        }
       }
-      setUserDataGathered(true);
+      else {
+        setSignedIn(true);
+      }
     }())
   });
 
-  if (userDataGathered) {
+  useEffect(() => {
+    (async function () {
+      if (signOutRequested) {
+        try {
+          await Auth.signOut();
+        }
+        catch (err) {
+          console.log("Failed to sign out");
+        }
+        finally {
+          setSignOutRequested(false);
+          setSignedIn(false);
+          setUser(null);
+        }
+      }
+    }())
+  });
+
+  if (user !== undefined && !signOutRequested) {
     return (<BrowserRouter>
       <Routes>
-        <Route path="/" element={<PrivateRoute signedIn={signedIn}> <MainPage user={user} /> </PrivateRoute>} />
-        <Route path="/login" element={<LoginPage onUserSigninSuccess={setSignedIn} />} />
+        <Route path="/" element={<PrivateRoute signedIn={signedIn}> <MainPage user={user} onSignOut={onSignOut} /> </PrivateRoute>} />
+        <Route path="/login" element={<LoginPage signedIn={signedIn} onUserSigninSuccess={setUser} />} />
       </Routes>
     </BrowserRouter>)
   }
-  return <div></div>
+  return (<div></div>)
+
 
 }
 
