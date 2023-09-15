@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import './MainPage.scss';
 import Post from "./Post/Post";
 import SubmissionForm from "./SubmissionForm/SubmissionForm";
 import PageBrowser from "./PageBrowser/PageBrowser";
 import TagDropDown from "./TagDropDown/TagDropDown";
 import type { PostData } from "./Post/Post";
-import { text } from "body-parser";
 import DropDown from "../GlobalComponents/DropDown/DropDown";
-import { Auth } from "aws-amplify";
 import { CognitoUser } from "@aws-amplify/auth";
 import { Navigate } from "react-router-dom";
 

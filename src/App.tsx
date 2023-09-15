@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Navigate, Route, Router, RouterProvider, Routes, createBrowserRouter, useNavigate, useNavigation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import MainPage from './MainPage/MainPage';
 import LoginPage from './LoginPage/LoginPage';
-import { CognitoUserSession, CognitoUser } from 'amazon-cognito-identity-js'
+import { CognitoUser } from 'amazon-cognito-identity-js'
 import { Auth } from 'aws-amplify';
 import PrivateRoute from './GlobalComponents/ProtectedRoute/ProtectedRoute';
 
@@ -74,8 +74,6 @@ function App() {
     </BrowserRouter>)
   }
   return (<div></div>)
-
-
 }
 
 export default App;
